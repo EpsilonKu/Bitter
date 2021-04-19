@@ -4,10 +4,7 @@ import kz.VastPink.Bitter.entity.UserEntity;
 import kz.VastPink.Bitter.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -37,5 +34,15 @@ public class UserController {
         }
     }
 
+    @PostMapping (value = "/")
+    public UserEntity addUser(){
+        try {
+            UserEntity entity = new UserEntity("username","name","surname");
+            return userRepository.save(entity);
+        }catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+    }
 
 }
